@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 function App() {
   const [imageFile, setImageFile] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const handleImage = async (e) => {
     const file = e.target.files[0];
     setImageFile(file);
@@ -10,7 +11,9 @@ function App() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("imageFile", imageFile);
-    await axios.post("/uploadPhoto", formData);
+    const res = await axios.post("/uploadPhoto", formData);
+    console.log("Response from the server", res);
+    setImageUrl(res.data.Location);
   };
   return (
     <div>
@@ -26,6 +29,8 @@ function App() {
           <button onClick={onSubmit}>Submit</button>
         </form>
       </div>
+      <p>Photo</p>
+      <img src={imageUrl} alt='Uploaded to AWS S3' />
     </div>
   );
 }
