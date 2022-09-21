@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const { upload } = require("./awsController");
+const { upload, getList } = require("./awsController");
 
 const createPhoto = asyncHandler(async (req, res) => {
   const image = req.file;
@@ -7,4 +7,8 @@ const createPhoto = asyncHandler(async (req, res) => {
   res.send(result);
 });
 
-module.exports = { createPhoto };
+const getPhotos = asyncHandler(async (req, res) => {
+  const result = getList();
+  res.send(result);
+});
+module.exports = { createPhoto, getPhotos };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import DisplayImages from "./pages/DisplayImages";
 function App() {
   const [imageFile, setImageFile] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -44,6 +45,7 @@ function App() {
         <div className='mt-5'>
           <img src={imageUrl} alt='Uploaded to AWS S3' />
         </div>
+        <DisplayImages />
       </div>
     </div>
   );

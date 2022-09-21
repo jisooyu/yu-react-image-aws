@@ -9,7 +9,8 @@ app.use(express.json());
 // x-www-form-urlencoded를 사용하면 다음이 필요
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/uploadPhoto", require("./routes/photoRoutes"));
+app.use("/uploadPhoto", require("./routes/uploadPhotoRoutes"));
+app.use("/getPhotos", require("./routes/getPhotoRoutes"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));

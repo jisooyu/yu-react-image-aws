@@ -24,4 +24,22 @@ function upload(file) {
   return s3.upload(uploadParams).promise();
 }
 
-module.exports = { upload };
+async function getList() {
+  // let allKeys = [];
+  const params = { Bucket: bucketName };
+  // let result = await s3.listObjectsV2({ Bucket: bucketName }).promise();
+  // await s3.listObjectsV2(params, function (err, data) {
+  //   if (err) {
+  //     console.log(err, err.stack);
+  //   } else {
+  //     let contents = data.contents;
+  //     contents.forEach(function (content) {
+  //       allKeys.push(content.key);
+  //     });
+  //   }
+  // });
+  let result = await s3.listObjectsV2(params).promise();
+  return result;
+}
+
+module.exports = { upload, getList };
